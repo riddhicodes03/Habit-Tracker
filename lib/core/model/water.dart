@@ -28,4 +28,15 @@ class Water {
       date: DateTime.parse(map['date']),
     );
   }
+   Water copyWith({
+    String? id,
+    double? litres,
+    DateTime? date,
+  }) {
+    return Water(
+      id: id ?? this.id,
+      litres: litres ?? this.litres,
+      date: date ?? this.date,
+    );
+  }
 }

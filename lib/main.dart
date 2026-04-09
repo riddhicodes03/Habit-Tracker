@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:habit_tracker/core/theme/theme.dart';
-import 'package:habit_tracker/home.dart';
+import 'package:habit_tracker/view/screen/home.dart';
 
 void main() {
   runApp(const MyApp());
