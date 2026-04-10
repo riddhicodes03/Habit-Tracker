@@ -21,7 +21,7 @@ class DBHelper {
       CREATE TABLE habit(
         id TEXT PRIMARY KEY,
         name TEXT NOT NULL,
-        created_at TEXT
+        createdAt TEXT
       )
     ''');
     await db.execute('''

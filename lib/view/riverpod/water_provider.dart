@@ -1,7 +1,6 @@
 import 'package:habit_tracker/core/database/database_helper.dart';
 import 'package:habit_tracker/core/model/water.dart';
 import 'package:riverpod/legacy.dart';
-import 'package:uuid/uuid.dart';
 
 class WaterNotifier extends StateNotifier<List<Water>> {
   WaterNotifier() : super([]);

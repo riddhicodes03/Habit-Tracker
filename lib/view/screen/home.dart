@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:habit_tracker/view/widget/habit_box.dart';
 
 class Home extends StatefulWidget {
   const Home({super.key});
@@ -8,6 +9,13 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
+  bool isChecked = false;
+  void onToggle(bool? value) {
+    setState(() {
+      isChecked = value ?? false;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     var scheme = Theme.of(context);
@@ -20,10 +28,25 @@ class _HomeState extends State<Home> {
           color: scheme.colorScheme.surfaceContainerLowest,
         ),
         child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Text('Greeting+date', style: TextStyle(color: Colors.white)),
             Text('CircularProgress', style: TextStyle(color: Colors.white)),
-            Text('List of Habits', style: TextStyle(color: Colors.white)),
+            HabitBox(
+              title: 'Wake up at 5am',
+              onChange: onToggle,
+              isChecked: false,
+            ),
+            HabitBox(
+              title: 'Drink 7 litres of water',
+              onChange: onToggle,
+              isChecked: false,
+            ),
+            HabitBox(
+              title: 'Meditate for 30 Mins',
+              onChange: onToggle,
+              isChecked: false,
+            ),
             Text('This Month', style: TextStyle(color: Colors.white)),
           ],
         ),
