@@ -3,62 +3,98 @@ import 'package:flutter/material.dart';
 class HabitBox extends StatelessWidget {
   const HabitBox({
     super.key,
-    required this.onChange,
-    required this.isChecked,
     required this.title,
+    required this.streakText,
+    required this.isChecked,
+    required this.onChange,
+    required this.icon,
+    required this.iconColor,
   });
-  final bool isChecked;
-  final String title;
-  final void Function(bool?) onChange;
 
-  @override
+  final String title;
+  final String streakText;
+  final bool isChecked;
+  final void Function(bool?) onChange;
+  final IconData icon;
+  final Color iconColor;
+
   @override
   Widget build(BuildContext context) {
     final scheme = Theme.of(context).colorScheme;
 
     return Container(
       margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-      padding: const EdgeInsets.all(14),
+      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
       decoration: BoxDecoration(
-        color: scheme.surfaceContainer,
-        borderRadius: BorderRadius.circular(16),
+        color: scheme.surfaceContainer, // dark blue background
+        borderRadius: BorderRadius.circular(18),
         border: Border.all(
-          color: isChecked
-              ? scheme.primary.withValues(alpha: 0.6)
-              : Colors.transparent,
           width: 1.5,
+          color: isChecked
+              ? scheme.surfaceContainerHigh
+              : scheme.surfaceContainer,
         ),
-        boxShadow: [
-          BoxShadow(
-            color: Colors.black.withValues(alpha: 0.15),
-            blurRadius: 10,
-            offset: const Offset(0, 4),
-          ),
-        ],
       ),
 
       child: Row(
         children: [
-          /// ✅ Modern Checkbox
-          Transform.scale(
-            scale: 1.4,
-            child: Checkbox(value: isChecked, onChanged: onChange),
+          /// 🔥 Left Icon Box
+          Container(
+            height: 45,
+            width: 45,
+            decoration: BoxDecoration(
+              color: iconColor.withValues(alpha: 0.15),
+              borderRadius: BorderRadius.circular(12),
+            ),
+            child: Icon(icon, color: iconColor, size: 22),
           ),
 
-          const SizedBox(width: 12),
+          const SizedBox(width: 14),
 
-          /// 📝 Title + Subtitle
+          /// 📝 Title + Streak
           Expanded(
-            child: Text(
-              title,
-              style: TextStyle(
-                fontSize: 16,
-                fontWeight: FontWeight.w600,
-                decoration: isChecked ? TextDecoration.lineThrough : null,
-                color: isChecked
-                    ? scheme.primary.withValues(alpha: 0.1)
-                    : scheme.onSurface,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  title,
+                  style: const TextStyle(
+                    fontSize: 16,
+                    fontWeight: FontWeight.w600,
+                    color: Colors.white,
+                  ),
+                ),
+                const SizedBox(height: 4),
+                Text(
+                  streakText,
+                  style: TextStyle(
+                    fontSize: 13,
+                    color: Colors.white.withValues(alpha: 0.4),
+                  ),
+                ),
+              ],
+            ),
+          ),
+
+          /// ✅ Right Checkbox (custom circle style)
+          GestureDetector(
+            onTap: () => onChange(!isChecked),
+            child: Container(
+              height: 26,
+              width: 26,
+              decoration: BoxDecoration(
+                shape: BoxShape.circle,
+                color: isChecked ? Colors.green : Colors.transparent,
+                border: Border.all(
+                  color: isChecked
+                      ? Colors.green
+                      : Colors.white.withValues(alpha: 0.3),
+                  width: 1.5,
+                ),
               ),
+              child: isChecked
+                  ? const Icon(Icons.check, size: 16, color: Colors.black)
+                  : null,
             ),
           ),
         ],
