@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:habit_tracker/view/widget/add_water_button.dart';
 import 'package:habit_tracker/view/widget/habit_box.dart';
+import 'package:habit_tracker/view/widget/water_ring.dart';
 
 class Home extends StatefulWidget {
   const Home({super.key});
@@ -16,6 +18,7 @@ class _HomeState extends State<Home> {
     });
   }
 
+  void addWater() {}
   @override
   Widget build(BuildContext context) {
     var scheme = Theme.of(context);
@@ -23,6 +26,7 @@ class _HomeState extends State<Home> {
     return Scaffold(
       backgroundColor: scheme.colorScheme.surfaceContainerLowest,
       body: Container(
+        margin: EdgeInsets.all(8),
         width: width,
         decoration: BoxDecoration(
           color: scheme.colorScheme.surfaceContainerLowest,
@@ -32,6 +36,30 @@ class _HomeState extends State<Home> {
           children: [
             Text('Greeting+date', style: TextStyle(color: Colors.white)),
             Text('CircularProgress', style: TextStyle(color: Colors.white)),
+            WaterRing(current: 1000, goal: 3500),
+            SizedBox(height: 10),
+            Row(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                AddWaterButton(amount: 100, onTap: addWater),
+                SizedBox(width: 10),
+                AddWaterButton(amount: 250, onTap: addWater),
+                SizedBox(width: 10),
+                AddWaterButton(amount: 500, onTap: addWater),
+                SizedBox(width: 10),
+              ],
+            ),
+            SizedBox(height: 25),
+            Container(
+              margin: EdgeInsets.only(left: 14),
+              alignment: Alignment.bottomLeft,
+              child: Text(
+                'Today\'s Habits',
+
+                style: TextStyle(fontSize: 18, fontWeight: FontWeight.w500),
+              ),
+            ),
             HabitBox(
               title: "Exercise",
               streakText: "5 day streak",
