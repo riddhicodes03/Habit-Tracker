@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:habit_tracker/view/widget/add_water_button.dart';
+import 'package:habit_tracker/view/widget/greeting.dart';
 import 'package:habit_tracker/view/widget/habit_box.dart';
 import 'package:habit_tracker/view/widget/water_ring.dart';
 
@@ -34,10 +35,34 @@ class _HomeState extends State<Home> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Text('Greeting+date', style: TextStyle(color: Colors.white)),
-            Text('CircularProgress', style: TextStyle(color: Colors.white)),
+            Greeting(),
+            SizedBox(height: 10),
             WaterRing(current: 1000, goal: 3500),
             SizedBox(height: 10),
+            Row(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text(
+                  'Goal 3500 ml :',
+                  style: TextStyle(
+                    color: scheme.colorScheme.onSurface,
+                    fontSize: 15,
+                    fontWeight: FontWeight.w500,
+                  ),
+                ),
+                SizedBox(width: 3),
+                Text(
+                  '${(1000 / 3500 * 100).toStringAsFixed(0)}%',
+                  style: TextStyle(
+                    color: Theme.of(context).colorScheme.primary,
+                    fontSize: 15,
+                    fontWeight: FontWeight.w500,
+                  ),
+                ),
+              ],
+            ),
+            SizedBox(height: 20),
             Row(
               crossAxisAlignment: CrossAxisAlignment.center,
               mainAxisAlignment: MainAxisAlignment.center,

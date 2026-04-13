@@ -33,12 +33,12 @@ class WaterRing extends StatelessWidget {
                 style: TextStyle(
                   fontSize: 28,
                   fontWeight: FontWeight.w500,
-                  color: scheme.onSurface,
+                  color: scheme.primary,
                 ),
               ),
               Text(
                 'of ${goal}ml',
-                style: TextStyle(fontSize: 12, color: scheme.onSurfaceVariant),
+                style: TextStyle(fontSize: 12, color: scheme.onSurface),
               ),
             ],
           ),
